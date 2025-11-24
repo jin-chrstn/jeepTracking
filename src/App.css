@@ -1,0 +1,171 @@
+/* Reset and Full Screen Setup */
+body, #root, .app-container {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row; /* default: side-by-side */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Map Wrapper (Left Side) */
+.map-wrapper {
+  flex-grow: 1;
+  height: 100%;
+  position: relative;
+  background: #f6f6f6;
+}
+
+.thesis-map {
+  height: 100%;
+  width: 100%;
+  z-index: 0; 
+}
+
+/* Info Panel (Right Side) */
+
+.info-panel {
+  width: 380px;
+  min-width: 300px;
+  background-color: transparent;
+  color: #2c3e50;
+  padding: 20px;
+  box-shadow: none;
+  overflow-y: auto;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Card that holds route info (white card like screenshot) */
+.info-card {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.18);
+}
+
+/* Desktop/web overlay: place info card on bottom-left over the map */
+@media (min-width: 821px) {
+  .info-panel {
+    position: absolute;
+    right: auto;
+    left: 32px;
+    bottom: 28px;
+    top: auto;
+    width: 360px;
+    pointer-events: auto;
+  }
+
+  /* make sure map container has full height so overlay sits over it */
+  .map-wrapper { z-index: 0; }
+}
+
+.info-card header {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.info-card header h1 {
+  margin: 0;
+  font-size: 1.6em;
+  color: #222;
+}
+
+.route-details h2 {
+  font-size: 1.05em;
+  color: #222;
+  margin: 6px 0;
+}
+
+.capacity-details h3 {
+  font-size: 1.1em;
+  color: #222;
+}
+
+.capacity-details span {
+  font-weight: bold;
+  color: #f39c12; /* Orange for the numbers */
+}
+
+/* Styles for the dynamic capacity status text */
+.capacity-details .status {
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.capacity-details .status.low {
+    background-color: #2ecc71; /* Green */
+    color: #2c3e50;
+}
+
+.capacity-details .status.moderate {
+    background-color: #f39c12; /* Orange */
+    color: #2c3e50;
+}
+
+.capacity-details .status.full {
+    background-color: #e74c3c; /* Red */
+    color: white;
+}
+
+/* Capacity Legend Styling */
+.legend {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  margin-top: 12px;
+  font-size: 0.85em;
+  align-items: center;
+}
+
+.legend .item { display:flex; align-items:center; gap:6px; }
+.legend .swatch { width:16px; height:16px; border-radius:4px; display:inline-block; }
+.legend .low .swatch { background:#2ecc71 }
+.legend .moderate .swatch { background:#f39c12 }
+.legend .full .swatch { background:#e74c3c }
+
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 20px 0;
+}
+
+/* Bus image overlay on top center of map */
+.bus-top {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  z-index: 50;
+}
+
+/* Responsive: stack vertically on narrow screens (mobile-like) */
+@media (max-width: 520px) {
+  body, #root, .app-container {
+    flex-direction: column;
+  }
+
+  .map-wrapper {
+    height: 55vh;
+  }
+
+  .info-panel {
+    width: 100%;
+    min-width: 0;
+    padding: 14px;
+  }
+
+  .info-card { width: calc(100% - 10px); }
+}
