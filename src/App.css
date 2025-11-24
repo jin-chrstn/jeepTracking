@@ -169,3 +169,30 @@ body, #root, .app-container {
 
   .info-card { width: calc(100% - 10px); }
 }
+
+/* --- Styles for the Marker Popup --- */
+.marker-popup {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+}
+
+.marker-popup h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.marker-popup p {
+  margin: 4px 0;
+}
+
+.marker-popup .status-label {
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: white;
+}
+
+.marker-popup .status-label.low { background-color: #2ecc71; color: #2c3e50; }
+.marker-popup .status-label.moderate { background-color: #f39c12; color: #2c3e50; }
+.marker-popup .status-label.full { background-color: #e74c3c; }
